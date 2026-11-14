@@ -1,0 +1,201 @@
+.honeill-wrap {
+	max-width: 1280px;
+}
+
+.honeill-tabs {
+	margin-bottom: 20px;
+}
+
+.honeill-panel,
+.honeill-empty,
+.honeill-group {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	margin: 0 0 20px;
+	padding: 20px;
+}
+
+.honeill-panel h2,
+.honeill-group h2 {
+	margin-top: 0;
+}
+
+.honeill-muted {
+	color: #646970;
+}
+
+/* Scan form + progress */
+.honeill-scan-form {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 18px;
+}
+
+.honeill-scan-form p {
+	margin: 0;
+}
+
+.honeill-progress {
+	background: #f0f0f1;
+	border-radius: 999px;
+	flex-basis: 100%;
+	height: 8px;
+	overflow: hidden;
+}
+
+.honeill-progress span {
+	background: #2271b1;
+	display: block;
+	height: 100%;
+	transition: width 0.3s ease;
+}
+
+/* Group header */
+.honeill-group__header {
+	align-items: flex-start;
+	display: flex;
+	gap: 16px;
+	justify-content: space-between;
+	margin-bottom: 18px;
+}
+
+.honeill-group__header p {
+	margin: 4px 0 0;
+	max-width: 60ch;
+}
+
+.honeill-badge {
+	background: #f0f0f1;
+	border-radius: 999px;
+	color: #1d2327;
+	display: inline-block;
+	font-weight: 600;
+	padding: 5px 10px;
+	white-space: nowrap;
+}
+
+/* Cards */
+.honeill-grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	margin-bottom: 18px;
+}
+
+.honeill-card {
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	overflow: hidden;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.honeill-card.is-master {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+
+.honeill-card__image {
+	align-items: center;
+	aspect-ratio: 4 / 3;
+	background: #f6f7f7;
+	display: flex;
+	justify-content: center;
+}
+
+.honeill-card__image img {
+	display: block;
+	height: 100%;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: contain;
+	width: 100%;
+}
+
+.honeill-card__body {
+	padding: 14px;
+}
+
+.honeill-radio,
+.honeill-check {
+	display: block;
+	margin-bottom: 8px;
+}
+
+.honeill-radio {
+	font-weight: 600;
+}
+
+.honeill-card.is-master .honeill-radio__text::after {
+	background: #2271b1;
+	border-radius: 999px;
+	color: #fff;
+	content: "MASTER";
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin-left: 8px;
+	padding: 2px 7px;
+	vertical-align: middle;
+}
+
+.honeill-check {
+	color: #b32d2e;
+	font-weight: 600;
+}
+
+.honeill-check input:disabled + * ,
+.honeill-card.is-master .honeill-check {
+	color: #a7aaad;
+}
+
+.honeill-card.is-master .honeill-check {
+	cursor: not-allowed;
+	font-weight: 400;
+}
+
+.honeill-card dl {
+	display: grid;
+	gap: 6px 10px;
+	grid-template-columns: 86px minmax(0, 1fr);
+	margin: 14px 0;
+}
+
+.honeill-card dt {
+	color: #646970;
+	font-weight: 600;
+}
+
+.honeill-card dd {
+	margin: 0;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+/* Action rows */
+.honeill-actions {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 16px;
+}
+
+.honeill-dismiss-form {
+	margin-top: 12px;
+}
+
+.honeill-dismiss {
+	color: #646970 !important;
+}
+
+@media (max-width: 782px) {
+	.honeill-group__header,
+	.honeill-scan-form {
+		display: block;
+	}
+
+	.honeill-scan-form p {
+		margin-bottom: 8px;
+	}
+}
