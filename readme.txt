@@ -4,7 +4,7 @@ Tags: media, duplicates, images, media library, cleanup
 Requires at least: 5.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.4.1
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,14 @@ Before deleting, the plugin repoints common references, including every generate
 **Always test on a staging site with a full database and uploads backup before deleting on production.** Reference replacement is best-effort; some page builders store image IDs inside JSON or cache their own rendered output and may need a manual refresh.
 
 **Disclaimer:** You use this plugin entirely at your own risk. Always keep a current backup of your database and uploads, and double-check your site before and after merging. The author accepts no responsibility or liability for any data loss or site issues.
+
+== External services ==
+
+* **Service:** Honeill plugin usage statistics (`https://honeill-plugin-telemetry.vercel.app/api/v1/report` and `/api/v1/forget`), run by the plugin's author.
+* **Only if you opt in.** Honeill Media Duplicate Manager sends nothing until an administrator clicks "Allow" on the one-time notice (or turns it on in the plugin settings). It is off by default and can be turned off at any time.
+* **When it connects:** once shortly after you opt in, then once a week. When you opt out or delete the plugin, it asks for your site's data to be erased.
+* **What is sent:** the plugin name and version, a random ID created for your site, your site address, WordPress/PHP/database versions, site language, whether it is a multisite, the number of users, published posts, published pages and media items, the web server software, the active theme's name and the PHP memory limit. No personal data or content is sent.
+* **Privacy and terms:** https://honeill-plugin-telemetry.vercel.app/privacy
 
 == Installation ==
 
@@ -66,6 +74,9 @@ Open the Settings tab and choose "Show dismissed groups again".
 
 == Changelog ==
 
+= 0.5.0 =
+* New: optional, opt-in usage statistics (off by default). A one-time notice asks administrators whether to share basic, non-personal site information weekly; it can be changed on the plugin's Settings tab. Opting out or deleting the plugin erases this site's data. See "External services".
+
 = 0.4.1 =
 * Fixed (important): merging could overwrite unrelated values that happened to equal the duplicate's ID — prices, counts, settings, user meta, options, and other shortcodes' `ids` (e.g. WooCommerce `[products]`). Plain IDs are now only repointed where they are known to be image references: featured images, WooCommerce product galleries and category images, the site icon/logo, custom logo and header image, and ACF image, gallery and file fields.
 * Fixed: repointing `wp-image-12` no longer also changed `wp-image-123`.
@@ -90,9 +101,9 @@ Open the Settings tab and choose "Show dismissed groups again".
 * Added an explicit backup / use-at-your-own-risk disclaimer to the description and the admin screen.
 
 = 0.2.1 =
-* Added GPL license headers and a WordPress.org readme.
+* Added GPL licence headers and a WordPress.org readme.
 * Added translators comments for all translatable strings with placeholders.
-* Hardened and documented dynamic-table SQL with an internal allowlist; centralized request input handling.
+* Hardened and documented dynamic-table SQL with an internal allowlist; centralised request input handling.
 * Removed manual text-domain loading (WordPress loads translations automatically for hosted plugins).
 
 = 0.2.0 =
@@ -106,6 +117,9 @@ Open the Settings tab and choose "Show dismissed groups again".
 * Initial release: exact (SHA-256) and visual-hash duplicate detection with manual review.
 
 == Upgrade Notice ==
+
+= 0.5.0 =
+Adds optional, opt-in usage statistics. Nothing is sent unless an administrator chooses to allow it.
 
 = 0.4.1 =
 Important fix: merging could overwrite unrelated values equal to the duplicate's ID (prices, counts, settings). Update before merging again.

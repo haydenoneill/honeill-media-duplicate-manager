@@ -38,18 +38,23 @@ Plain numbers are only changed where they are known to be image references. Pric
 3. For each group, pick the master, tick the copies to delete, and merge.
 4. Run the Similar Image scan and review matches manually.
 
+## Usage statistics (opt-in)
+
+The plugin can send basic, non-personal site information (site address, WordPress/PHP/database versions, language, theme, web server, memory limit, and user/post/page/media counts) to its author once a week, **only if an administrator opts in**. It's off by default, can be turned off at any time in the plugin settings, and opting out or deleting the plugin erases the site's data. Details: <https://honeill-plugin-telemetry.vercel.app/privacy>. The code is in `includes/telemetry.php`.
+
 ## Development
 
 This repository mirrors the plugin as published on WordPress.org (`trunk` and tags in [plugins.svn.wordpress.org](https://plugins.svn.wordpress.org/honeill-media-duplicate-manager/)). There is no build step: the plugin is plain PHP, CSS and JS.
 
 ```
 honeill-media-duplicate-manager.php   main plugin file
+includes/telemetry.php                opt-in usage statistics
 uninstall.php                         cleanup when the plugin is deleted
 assets/admin.css, assets/admin.js     admin screen
 readme.txt                            WordPress.org readme (changelog lives here)
 ```
 
-## License
+## Licence
 
 GPLv2 or later. See [LICENSE](LICENSE).
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Honeill Media Duplicate Manager
  * Description: Clean up a bloated media library in minutes. Finds exact (SHA-256) and visually similar duplicate images, lets you choose which copies to keep, and repoints every reference before deleting the rest.
- * Version: 0.4.1
+ * Version: 0.5.0
  * Author: Hayden O'Neill
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
 
 final class Honeill_Media_Duplicate_Manager
 {
-    public const VERSION = '0.4.1';
+    public const VERSION = '0.5.0';
 
     private const SHA_META = '_honeill_sha256';
     private const VISUAL_META = '_honeill_visual_hash';
@@ -267,6 +267,11 @@ final class Honeill_Media_Duplicate_Manager
         echo '</table>';
         submit_button(__('Save Settings', 'honeill-media-duplicate-manager'));
         echo '</form>';
+        echo '</section>';
+
+        echo '<section class="honeill-panel">';
+        echo '<h2>' . esc_html__('Usage statistics', 'honeill-media-duplicate-manager') . '</h2>';
+        Honeill_Media_Duplicate_Manager_Telemetry::render_setting();
         echo '</section>';
 
         if (!empty($ignored)) {
@@ -1741,5 +1746,8 @@ final class Honeill_Media_Duplicate_Manager
         return array_map('absint', (array) $raw);
     }
 }
+
+require_once __DIR__ . '/includes/telemetry.php';
+Honeill_Media_Duplicate_Manager_Telemetry::boot(__FILE__, Honeill_Media_Duplicate_Manager::VERSION, array('media_page_honeill-media-duplicate-manager'));
 
 Honeill_Media_Duplicate_Manager::boot();

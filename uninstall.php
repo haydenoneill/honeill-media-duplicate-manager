@@ -24,9 +24,22 @@ function honeill_media_duplicate_manager_uninstall_site()
         'honeill_ignored_signatures',
     );
 
+    // If this site opted in to usage statistics, ask for its data to be erased.
+    $honeill_install_id = (string) get_option('honeill_media_duplicate_manager_install_id', '');
+    if ($honeill_install_id !== '' && get_option('honeill_media_duplicate_manager_telemetry') === 'yes') {
+        wp_safe_remote_post('https://honeill-plugin-telemetry.vercel.app/api/v1/forget', array(
+            'timeout' => 5,
+            'headers' => array('Content-Type' => 'application/json'),
+            'body'    => wp_json_encode(array('install_id' => $honeill_install_id, 'plugin' => 'honeill-media-duplicate-manager')),
+        ));
+    }
+
     foreach ($honeill_options as $honeill_option) {
         delete_option($honeill_option);
     }
+    delete_option('honeill_media_duplicate_manager_telemetry');
+    delete_option('honeill_media_duplicate_manager_install_id');
+    wp_clear_scheduled_hook('honeill_media_duplicate_manager_telemetry_send');
 
     // Per-attachment meta written by the plugin.
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time cleanup on uninstall using fixed, hardcoded meta keys.
